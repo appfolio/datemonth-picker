@@ -1,14 +1,14 @@
 import { computed, observable } from 'knockout';
+import fecha from 'fecha';
 import range from 'lodash.range';
 
 export default class DateModel {
-  constructor(params = { date: new Date(), name: '', open: false }) {
-    // Initial date:
-    let now = params.date;
-    // Input field name attribute:
-    this.name = params.name;
-    // Open.close the date picker
-    this.open = observable(params.open);
+  constructor(params) {
+    let { date = new Date(), name = '', open = false } = params;
+
+    let now = typeof date == 'object' ? date : fecha.parse(date, 'MMM YYYY');
+    this.name = name;
+    this.open = observable(open);
 
     this.day = 1;
     this.month = observable(now.getMonth());
