@@ -2,10 +2,14 @@ import { computed, observable } from 'knockout';
 import range from 'lodash.range';
 
 export default class DateModel {
-  constructor(params) {
-    let now = params ? params.date : new Date();
-    this.name = params ? params.name : '';
-    this.open = observable(params ? params.open : false);
+  constructor(params = { date: new Date(), name: '', open: false }) {
+    // Initial date:
+    let now = params.date;
+    // Input field name attribute:
+    this.name = params.name;
+    // Open.close the date picker
+    this.open = observable(params.open);
+
     this.day = 1;
     this.month = observable(now.getMonth());
     this.year = observable(now.getFullYear());
@@ -30,7 +34,11 @@ export default class DateModel {
     this.open.subscribe(value => {
       this.undo(this.date());
     });
+
+    // TODO add document listener to hide picker on outside click
   }
+
+  // TODO add dispose to remove document listener to hide picker
 
   cancel() {
     let month = this.undo().getMonth();
