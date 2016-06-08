@@ -3,6 +3,9 @@
 
 ## Usage:
 ```html
+<div id="datemonth" data-bind="component: { name:'date-month', params: { name: name, date: date }}">
+  <input name="datemonth" type="text" value="Nov 1971">
+</div>
 <script src="DateMonth.js"></script>
 <script>
   $(function() {
@@ -10,7 +13,7 @@
     var date = $("#datemonth input").val();
 
     // Pass the element to replace, name of the input, and date value:
-    DateMonth('#datemonth', 'datemonth', date);
+    DateMonth($("#datemonth")[0], 'datemonth', date);
   });
 </script>
 ```
