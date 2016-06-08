@@ -4,7 +4,7 @@
       <input name="{{name}}" type="text" class="form-control"
              value="{{month_year}}"
              data-bind="event: { focus: function() { this.open(true) } }">
-      <span class="input-group-addon" data-bind="click: function() { this.open(true) }">
+      <span class="input-group-addon" data-bind="click: function() { this.open(!this.open()) }">
         <i class="icon icon-calendar"></i>
       </span>
     </div>
