@@ -9,6 +9,9 @@
   "homepage": "https://github.com/appfolio/datemonth-picker",
   "private": true,
   "ignore": [
+    "*.html",
+    "*.js",
+    "src",
     "**/.*",
     "node_modules",
     "bower_components",
