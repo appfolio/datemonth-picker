@@ -1,0 +1,52 @@
+<div class="date_month">
+  <header>
+    <div class="input-group">
+      <input name="{{name}}" type="text" class="form-control"
+             value="{{month_year}}"
+             twoway="false"
+             data-bind="focus: function() { this.open(true) }">
+      <span class="input-group-addon" data-bind="click: function() { this.open(true) }">
+        <i class="icon icon-calendar"></i>
+      </span>
+    </div>
+  </header>
+
+  {{#if: open}}
+    <div class="picker">
+      <div class="row">
+        <div class="month col-xs-6">
+          <ul>
+            {{#foreach: visible_months}}
+              <li data-bind="css: { selected: $parent.month() == $index() }, click: function() { $parent.month($index()) }">
+                {{$data}}
+              </li>
+            {{/foreach}}
+          </ul>
+        </div>
+
+        <div class="year col-xs-6">
+          <header>
+            <a data-bind="click: prev" class="btn btn-default">
+              <i class="icon icon-caret-left"></i>
+            </a>
+            <a data-bind="click: next, attr: { disabled: !can_advance_year }" class="btn btn-default">
+              <i class="icon icon-caret-right"></i>
+            </a>
+          </header>
+          <ul>
+            {{#foreach: visible_years()}}
+              <li data-bind="css: { selected: $parent.year() == $data }, click: function() { $parent.year($data) }">
+                {{$data}}
+              </li>
+            {{/foreach}}
+          </ul>
+        </div>
+      </div>
+      <footer class="text-center">
+        <a class="btn btn-sm btn-default" data-bind="click: function() { open(false) }">OK</a>
+        <!-- TODO revert on cancel: -->
+        <a class="btn btn-sm btn-default" data-bind="click: cancel">Cancel</a>
+      </footer>
+    </div>
+  {{/if}}
+</div>
