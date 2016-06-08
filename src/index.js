@@ -9,10 +9,12 @@ import './bootstrap.css';
 
 module.exports = (element) => {
 
-  ko.components.register('date-month', {
-    viewModel: DateMonth,
-    template: template
-  });
+  if (!ko.components.isRegistered('date-month')) {
+    ko.components.register('date-month', {
+      viewModel: DateMonth,
+      template: template
+    });
+  }
 
   ko.applyBindings({}, element);
 }
