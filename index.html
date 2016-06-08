@@ -6,7 +6,7 @@
   <body>
     <div>
       <form action="?" method="get">
-        <div id="datemonth" data-bind="component: 'date-month'">
+        <div id="datemonth" data-bind="component: { name:'date-month', params: { name: name, date: date }}">
           <input name="datemonth" type="text" value="Nov 1971">
         </div>
         <input type="submit" value="Submit">
@@ -22,7 +22,7 @@
       var date = $("#datemonth input").val();
 
       // Pass the element to replace, name of the input, and date value:
-      DateMonth('#datemonth');
+      DateMonth($("#datemonth")[0], 'datemonth', date);
     });
   </script>
 </html>
