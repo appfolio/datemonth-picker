@@ -3,8 +3,7 @@
     <div class="input-group">
       <input name="{{name}}" type="text" class="form-control"
              value="{{month_year}}"
-             twoway="false"
-             data-bind="focus: function() { this.open(true) }">
+             data-bind="event: { focus: function() { this.open(true) } }">
       <span class="input-group-addon" data-bind="click: function() { this.open(true) }">
         <i class="icon icon-calendar"></i>
       </span>
@@ -26,12 +25,12 @@
 
         <div class="year col-xs-6">
           <header>
-            <a data-bind="click: prev" class="btn btn-default">
+            <button data-bind="click: prev" class="btn btn-default">
               <i class="icon icon-caret-left"></i>
-            </a>
-            <a data-bind="click: next, attr: { disabled: !can_advance_year }" class="btn btn-default">
+            </button>
+            <button data-bind="click: next, enable: can_advance_year" class="btn btn-default">
               <i class="icon icon-caret-right"></i>
-            </a>
+            </button>
           </header>
           <ul>
             {{#foreach: visible_years()}}
