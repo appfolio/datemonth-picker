@@ -15,7 +15,6 @@ module.exports = (element, name = '', date) => {
     viewModel: DateMonth,
     template: template
   });
-
   // Initialize store if date passed
   var initial_date = new Date();
   if (date) {
@@ -23,8 +22,9 @@ module.exports = (element, name = '', date) => {
   }
 
   let model = {
-    date: initial_date
+    date: initial_date,
+    name: name
   }
 
-  ko.applyBindings(model);
+  ko.applyBindings(model, element);
 }
