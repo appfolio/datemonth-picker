@@ -6,10 +6,11 @@
   "files": [
     "dist"
   ],
-  "author": "Gary Thomas",
+  "author": "Appfolio, Inc.",
   "license": "MIT",
   "private": true,
   "scripts": {
+    "dist": "node node_modules/webpack/bin/webpack.js -p",
     "test": "mocha --compilers js:babel-register --recursive"
   },
   "devDependencies": {
