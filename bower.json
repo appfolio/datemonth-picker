@@ -1,0 +1,18 @@
+{
+  "name": "datemonth-picker",
+  "description": "Date/Month picker",
+  "main": "dist/DateMonth.js",
+  "authors": [
+    "Gary Thomas"
+  ],
+  "license": "BSD 2-clause",
+  "homepage": "https://github.com/appfolio/datemonth-picker",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

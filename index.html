@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div>
+      <form action="?" method="get">
+        <div id="datemonth" data-bind="component: 'date-month'">
+          <input name="datemonth" type="text" value="Nov 1971">
+        </div>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="dist/DateMonth.js"></script>
+  <script>
+    $(function() {
+      // Get current date value from input:
+      var date = $("#datemonth input").val();
+
+      // Pass the element to replace, name of the input, and date value:
+      DateMonth('#datemonth');
+    });
+  </script>
+</html>
