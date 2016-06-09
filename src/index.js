@@ -1,3 +1,4 @@
+import click_out from './click_out.js';
 import ko from 'knockout';
 import 'knockout-punches';
 ko.punches.enableAll();
@@ -14,6 +15,10 @@ module.exports = (element) => {
       viewModel: DateMonth,
       template: template
     });
+  }
+
+  if (!ko.bindingHandlers.click_out) {
+    ko.bindingHandlers.click_out = click_out;
   }
 
   ko.applyBindings({}, element);
