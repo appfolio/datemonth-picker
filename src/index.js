@@ -1,25 +1,42 @@
-import click_out from './click_out.js';
-import ko from 'knockout';
-import 'knockout-punches';
-ko.punches.enableAll();
-
+import { createStore } from 'redux';
+import fecha from 'fecha';
+import undo from './undo_reducer.js';
+import reducer from './datemonth_reducer.js';
 import DateMonth from './DateMonth.js';
-import template from './DateMonth.html';
-import './DateMonth.css';
-import './bootstrap.css';
+import Ractive from 'ractive';
 
-module.exports = (element) => {
+Ractive.DEBUG = /unminified/.test(function(){/*unminified*/});
 
-  if (!ko.components.isRegistered('date-month')) {
-    ko.components.register('date-month', {
-      viewModel: DateMonth,
-      template: template
-    });
+// CJS-style export wrapper to avoid `DateMonth.default`:
+module.exports = (element, name = '', date) => {
+
+  const store = createStore(undo(reducer));
+  const app = new Ractive({
+    el: element,
+    components: {
+      DateMonth
+    },
+    data: {
+      name: name,
+      store
+    },
+    template: `<DateMonth name="{{name}}" date={{store.getState().present}} />`,
+    oninit() {
+      this.on({
+        'DateMonth.MONTH': (event, month) => store.dispatch({ type: 'MONTH', month }),
+        'DateMonth.YEAR': (event, year) => store.dispatch({ type: 'YEAR', year }),
+        'DateMonth.NEXT': () => store.dispatch({ type: 'NEXT' }),
+        'DateMonth.PREV': () => store.dispatch({ type: 'PREV' }),
+        'DateMonth.CANCEL': () => store.dispatch({ type: 'UNDO' }),
+        'DateMonth.SAVE': () => store.dispatch({ type: 'SAVE' })
+      });
+    }
+  });
+  store.subscribe(() => app.update());
+
+  // Initialize store if date passed
+  if (date && typeof date == 'string') {
+    let initial_date = fecha.parse(date, 'MMM YYYY');
+    store.dispatch({ type: 'DATE', date: initial_date });
   }
-
-  if (!ko.bindingHandlers.click_out) {
-    ko.bindingHandlers.click_out = click_out;
-  }
-
-  ko.applyBindings({}, element);
 }
