@@ -1,7 +1,6 @@
 'use strict'
 
 const webpack = require('webpack');
-const path = require('path');
 
 module.exports = {
   entry: [
@@ -16,10 +15,10 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css/, loader: 'style-loader!css-loader!autoprefixer-loader' },
-      { test: /\.html/, loader: 'html-loader' },
+      { test: /\.html/, loader: 'ractive-loader' },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loaders: ['babel'],
         exclude: /node_modules/,
         include: __dirname
       }

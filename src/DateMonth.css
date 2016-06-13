@@ -26,23 +26,11 @@
   z-index: 1000;
 }
 
-.date_month .picker header {
-  text-align: center;
-}
-
-.date_month .month {
-  padding-top: 8px;
-}
 .date_month .year {
   border-left: 1px solid lightgrey;
 }
 
-.date_month .picker header {
-  margin: 0;
-  padding: 4px;
-}
-
-.date_month .picker ul {
+.date_month .picker ul, .date_month .picker header {
   column-count: 2;
   margin: 0;
   padding: 4px;

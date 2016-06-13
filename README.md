@@ -1,9 +1,11 @@
-# Date/Month picker example
+# Date/Month picker
 
 
 ## Usage:
 ```html
-<span id="datemonth" data-bind="component: { name:'date-month', params: { date: 'Sep 1975', name: 'datemonth' }}"></span>
+<div id="datemonth">
+  <input name="datemonth" type="text" value="Nov 1971">
+</div>
 <script src="DateMonth.js"></script>
 <script>
   $(function() {
@@ -20,5 +22,9 @@
 
     npm install
     npm run dist
+
+## Test
+
+    npm test
 
 Open index.html in browser

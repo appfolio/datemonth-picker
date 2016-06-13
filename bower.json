@@ -3,7 +3,7 @@
   "description": "Date/Month picker",
   "main": "dist/DateMonth.js",
   "authors": [
-    "Gary Thomas"
+    "Appfolio, Inc."
   ],
   "license": "BSD 2-clause",
   "homepage": "https://github.com/appfolio/datemonth-picker",

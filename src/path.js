@@ -1,4 +1,5 @@
-// Shims MouseEvents to support event.path property
+// Shims UI/MouseEvents to support event.path property
+// TODO extract and share
 
 export default function path(event) {
   if (event.path) {
