@@ -18,6 +18,13 @@
 ```
 ----
 
+## Development
+
+    npm run dev
+
+This will start up a webpack-dev-server so the page will auto-update as you develop.
+The app is served at http://localhost:3000/
+
 ## Build
 
     npm install

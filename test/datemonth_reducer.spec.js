@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha';
 import assert from 'assert';
-import time from '../src/datemonth_reducer.js';
+import time from '../src/datemonth_reducer';
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

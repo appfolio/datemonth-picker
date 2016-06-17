@@ -1,14 +1,17 @@
 import { createStore } from 'redux';
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import fecha from 'fecha';
-import undo from './undo_reducer.js';
-import reducer from './datemonth_reducer.js';
-import DateMonth from './DateMonth.js';
+import undo from './undo_reducer';
+import reducer from './datemonth_reducer';
+import DateMonth from './components/DateMonth';
 import Ractive from 'ractive';
 
 Ractive.DEBUG = /unminified/.test(() => { /* unminified */ });
 
 // CJS-style export wrapper to avoid `DateMonth.default`:
-module.exports = (element, name = '', date) => {
+const x = (element, name = '', date) => {
   const store = createStore(undo(reducer));
   const app = new Ractive({
     el: element,
@@ -38,4 +41,15 @@ module.exports = (element, name = '', date) => {
     const initialDate = fecha.parse(date, 'MMM YYYY');
     store.dispatch({ type: 'DATE', date: initialDate });
   }
+};
+
+module.exports = (element, name, value) => {
+  const store = createStore(undo(reducer));
+
+  render(
+    <Provider store={store}>
+      <DateMonth name={name} value={value} />
+    </Provider>,
+    element
+  );
 };

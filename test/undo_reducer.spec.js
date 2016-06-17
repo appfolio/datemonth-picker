@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha';
 import assert from 'assert';
-import undoReducer from '../src/undo_reducer.js';
+import undoReducer from '../src/undo_reducer';
 
 function mockReducer(state = 1, action) {
   switch (action.type) {

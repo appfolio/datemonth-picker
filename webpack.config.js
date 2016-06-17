@@ -6,6 +6,7 @@ module.exports = {
   ],
   output: {
     path: `${__dirname}/dist/`,
+    publicPath: '/dist/',
     filename: 'DateMonth.js',
     library: 'DateMonth',
     libraryTarget: 'umd'
@@ -15,12 +16,18 @@ module.exports = {
       { test: /\.css/, loader: 'style-loader!css-loader!autoprefixer-loader' },
       { test: /\.html/, loader: 'ractive-loader' },
       {
-        test: /\.js$/,
-        loaders: ['babel'],
+        test: /\.jsx?$/,
+        loader: 'babel',
         exclude: /node_modules/,
-        include: __dirname
+        include: __dirname,
+        query: {
+          presets: ['es2015', 'react']
+        }
       }
     ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.css']
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -34,5 +41,9 @@ module.exports = {
         warnings: false
       }
     })
-  ]
+  ],
+  devServer: {
+    inline: true,
+    port: 3000
+  }
 };

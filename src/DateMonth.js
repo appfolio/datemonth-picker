@@ -1,9 +1,9 @@
 import Ractive from 'ractive';
 import includes from 'lodash.includes';
-import path from './path.js';
-import template from './DateMonth.html';
-import './DateMonth.css';
-import './bootstrap.css';
+import path from '../path';
+import template from '../DateMonth.html';
+import '../DateMonth.css';
+import '../bootstrap.css';
 
 export default Ractive.extend({
   template,
@@ -38,3 +38,5 @@ export default Ractive.extend({
     document.removeEventListener('click', this.listener);
   }
 });
+
+
