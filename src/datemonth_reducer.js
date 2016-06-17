@@ -13,6 +13,7 @@ function model(date) {
   const visibleMonths = MONTHS; // TODO consider limiting for this year.  Also I18N
   const visibleYears = range(start, end);
   return {
+    open: false,
     day: 1,
     month,
     year,

@@ -1,19 +1,15 @@
 import React, { PropTypes } from 'react';
-import PickerFooter from './PickerFooter';
-import Month from './Month';
+import PickerMonths from './PickerMonths';
+import PickerYearsContainer from '../containers/PickerYearsContainer';
+import PickerFooterContainer from '../containers/PickerFooterContainer';
 
-const Picker = ({ month, visibleMonths, onMonthClick, onOk, onCancel }) => (
+const Picker = ({ month, visibleMonths, onMonthClick, closePicker }) => (
   <div className="picker">
     <div className="row">
-      <div className="month col-xs-6">
-        <ul>
-          {visibleMonths.map((m, i) =>
-            <Month selected={month === i} month={m} onClick={() => onMonthClick(i)} />
-          )}
-        </ul>
-      </div>
+      <PickerMonths month={month} visibleMonths={visibleMonths} onMonthClick={onMonthClick} />
+      <PickerYearsContainer />
     </div>
-    <PickerFooter onOk={onOk} onCancel={onCancel} />
+    <PickerFooterContainer closePicker={closePicker} />
   </div>
 );
 
@@ -21,8 +17,7 @@ Picker.propTypes = {
   month: PropTypes.string.isRequired,
   visibleMonths: PropTypes.arrayOf(PropTypes.string).isRequired,
   onMonthClick: PropTypes.func.isRequired,
-  onOk: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired
+  closePicker: PropTypes.func.isRequired
 };
 
 export default Picker;

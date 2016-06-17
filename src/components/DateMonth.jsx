@@ -8,21 +8,21 @@ class DateMonth extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
-    this.onInputClick = this.onInputClick.bind(this);
+    this.togglePicker = this.togglePicker.bind(this);
   }
 
-  onInputClick() {
+  togglePicker() {
     this.setState({
       open: !this.state.open
     });
   }
 
   render() {
-    const picker = this.state.open ? <PickerContainer /> : null;
+    const picker = this.state.open ? <PickerContainer closePicker={this.togglePicker} /> : null;
 
     return (
       <div className="date_month">
-        <DateMonthInputContainer name={this.props.name} onClick={this.onInputClick} />
+        <DateMonthInputContainer name={this.props.name} onClick={this.togglePicker} />
         {picker}
       </div>
     );
