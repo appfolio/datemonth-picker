@@ -6,11 +6,11 @@ export default function path(event) {
     return event.path;
   }
 
-  let path = [];
-  var node = event.target;
-  while(node != document.body && node.parentNode) {
-   path.push(node);
-   node = node.parentNode;
+  const pathArr = [];
+  let node = event.target;
+  while (node !== document.body && node.parentNode) {
+    pathArr.push(node);
+    node = node.parentNode;
   }
-  return path;
+  return pathArr;
 }
