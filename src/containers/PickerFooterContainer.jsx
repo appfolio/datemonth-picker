@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 import PickerFooter from '../components/PickerFooter';
 import { cancel } from '../actions';
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = (dispatch, ownProps) => (
   {
     onCancel() {
-      this.props.closePicker();
+      ownProps.closePicker();
       dispatch(cancel());
     }
   }

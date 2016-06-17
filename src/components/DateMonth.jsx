@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import DateMonthInputContainer from '../containers/DateMonthInputContainer';
 import PickerContainer from '../containers/PickerContainer';
+import { save } from '../actions';
 import '../DateMonth.css';
 import '../bootstrap.css';
 
@@ -15,6 +16,9 @@ class DateMonth extends Component {
     this.setState({
       open: !this.state.open
     });
+    if (!this.state.open) {
+      this.props.dispatch(save());
+    }
   }
 
   render() {
@@ -32,6 +36,7 @@ class DateMonth extends Component {
 DateMonth.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
+  dispatch: PropTypes.func.isRequired
 };
 
 export default DateMonth;

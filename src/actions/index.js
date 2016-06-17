@@ -17,3 +17,7 @@ export function nextYears() {
 export function cancel() {
   return { type: 'UNDO' };
 }
+
+export function save() {
+  return { type: 'SAVE' };
+}

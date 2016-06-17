@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import fecha from 'fecha';
 import undo from './undo_reducer';
 import reducer from './datemonth_reducer';
-import DateMonth from './components/DateMonth';
+import DateMonthContainer from './containers/DateMonthContainer';
 import Ractive from 'ractive';
 
 Ractive.DEBUG = /unminified/.test(() => { /* unminified */ });
@@ -16,7 +16,7 @@ const x = (element, name = '', date) => {
   const app = new Ractive({
     el: element,
     components: {
-      DateMonth
+      DateMonthContainer
     },
     data: {
       name,
@@ -48,7 +48,7 @@ module.exports = (element, name, value) => {
 
   render(
     <Provider store={store}>
-      <DateMonth name={name} value={value} />
+      <DateMonthContainer name={name} value={value} />
     </Provider>,
     element
   );
