@@ -21,3 +21,7 @@ export function cancel() {
 export function save() {
   return { type: 'SAVE' };
 }
+
+export function setDate(date) {
+  return { type: 'DATE', date };
+}

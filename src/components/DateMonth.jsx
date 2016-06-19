@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import fecha from 'fecha';
 import DateMonthInputContainer from '../containers/DateMonthInputContainer';
 import PickerContainer from '../containers/PickerContainer';
-import { save } from '../actions';
+import { save, setDate } from '../actions';
 import path from '../path';
 import includes from 'lodash.includes';
 import '../DateMonth.css';
@@ -12,6 +13,12 @@ class DateMonth extends Component {
     super(props);
     this.state = { open: false };
     this.togglePicker = this.togglePicker.bind(this);
+
+    const date = this.props.value;
+    if (date && typeof date === 'string') {
+      const initialDate = fecha.parse(date, 'MMM YYYY');
+      this.props.dispatch(setDate(initialDate));
+    }
   }
 
   componentWillMount() {
