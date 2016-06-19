@@ -10,21 +10,11 @@ const mapStateToProps = state => (
   }
 );
 
-const mapDispatchToProps = dispatch => (
-  {
-    onYearClick(year) {
-      dispatch(updateYear(year));
-    },
-    onPrevClick() {
-      dispatch(prevYears());
-    },
-    onNextClick() {
-      dispatch(nextYears());
-    }
-  }
-);
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    onYearClick: updateYear,
+    onPrevClick: prevYears,
+    onNextClick: nextYears
+  }
 )(PickerYears);

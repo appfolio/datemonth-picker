@@ -9,15 +9,7 @@ const mapStateToProps = state => (
   }
 );
 
-const mapDispatchToProps = dispatch => (
-  {
-    onMonthClick(month) {
-      dispatch(updateMonth(month));
-    }
-  }
-);
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { onMonthClick: updateMonth }
 )(Picker);
