@@ -6,13 +6,13 @@ import './DateMonth.css';
 import './bootstrap.css';
 
 export default Ractive.extend({
+  template,
   isolated: true,
   data() {
     return {
       open: false
-    }
+    };
   },
-  template: template,
   oninit() {
     this.on({
       cancel() {
@@ -26,7 +26,7 @@ export default Ractive.extend({
   },
   onrender() {
     this.listener = event => {
-      let container = this.find('.date_month');
+      const container = this.find('.date_month');
       if (container && !includes(path(event), container)) {
         this.set('open', false);
       }

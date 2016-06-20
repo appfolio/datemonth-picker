@@ -3,7 +3,7 @@
     <header>
       <div class="input-group">
         <input name="{{name}}" type="text" class="form-control"
-               value="{{month_year}}"
+               value="{{monthYear}}"
                twoway="false"
                on-focus="set({ open: true })">
         <span class="input-group-addon" on-click="toggle('open')">
@@ -17,7 +17,7 @@
         <div class="row">
           <div class="month col-xs-6">
             <ul>
-              {{#each visible_months:m}}
+              {{#each visibleMonths:m}}
                 <li {{#if month == m}}class="selected"{{/if}} on-click="MONTH:{{m}}">
                   {{this}}
                 </li>
@@ -30,12 +30,12 @@
               <a on-click="PREV" class="btn btn-default">
                 <i class="icon icon-caret-left"></i>
               </a>
-              <a on-click="NEXT" {{#if !can_advance_year}}disabled{{/if}} class="btn btn-default">
+              <a on-click="NEXT" {{#if !canAdvanceYear}}disabled{{/if}} class="btn btn-default">
                 <i class="icon icon-caret-right"></i>
               </a>
             </header>
             <ul>
-              {{#each visible_years}}
+              {{#each visibleYears}}
                 <li {{#if year == this}}class="selected"{{/if}} on-click="YEAR:{{this}}">
                   {{this}}
                 </li>

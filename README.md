@@ -27,4 +27,8 @@
 
     npm test
 
+## Lint
+
+    npm run lint
+
 Open index.html in browser

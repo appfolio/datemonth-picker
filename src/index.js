@@ -5,11 +5,10 @@ import reducer from './datemonth_reducer.js';
 import DateMonth from './DateMonth.js';
 import Ractive from 'ractive';
 
-Ractive.DEBUG = /unminified/.test(function(){/*unminified*/});
+Ractive.DEBUG = /unminified/.test(() => { /* unminified */ });
 
 // CJS-style export wrapper to avoid `DateMonth.default`:
 module.exports = (element, name = '', date) => {
-
   const store = createStore(undo(reducer));
   const app = new Ractive({
     el: element,
@@ -17,10 +16,10 @@ module.exports = (element, name = '', date) => {
       DateMonth
     },
     data: {
-      name: name,
+      name,
       store
     },
-    template: `<DateMonth name="{{name}}" date={{store.getState().present}} />`,
+    template: '<DateMonth name="{{name}}" date={{store.getState().present}} />',
     oninit() {
       this.on({
         'DateMonth.MONTH': (event, month) => store.dispatch({ type: 'MONTH', month }),
@@ -35,8 +34,8 @@ module.exports = (element, name = '', date) => {
   store.subscribe(() => app.update());
 
   // Initialize store if date passed
-  if (date && typeof date == 'string') {
-    let initial_date = fecha.parse(date, 'MMM YYYY');
-    store.dispatch({ type: 'DATE', date: initial_date });
+  if (date && typeof date === 'string') {
+    const initialDate = fecha.parse(date, 'MMM YYYY');
+    store.dispatch({ type: 'DATE', date: initialDate });
   }
-}
+};
