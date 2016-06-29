@@ -1,7 +1,8 @@
+import { describe, it } from 'mocha';
 import assert from 'assert';
-import undo_reducer from '../src/undo_reducer.js';
+import undoReducer from '../src/undo_reducer.js';
 
-function mock_reducer(state = 1, action) {
+function mockReducer(state = 1, action) {
   switch (action.type) {
     case 'ADD': {
       return state + 1;
@@ -13,9 +14,9 @@ function mock_reducer(state = 1, action) {
 
 describe('undo_reducer', () => {
   it('should return unmodified present state', () => {
-    let undo = undo_reducer(mock_reducer);
+    const undo = undoReducer(mockReducer);
 
-    var state = undo(undefined, {});
+    let state = undo(undefined, {});
     assert.equal(state.present, 1);
 
     state = undo(state, {});
@@ -26,9 +27,9 @@ describe('undo_reducer', () => {
   });
 
   it('should return unmodified state if undo without save first', () => {
-    let undo = undo_reducer(mock_reducer);
+    const undo = undoReducer(mockReducer);
 
-    var state = undo(state, { type: 'ADD' });
+    let state = undo(undefined, { type: 'ADD' });
     state = undo(state, { type: 'ADD' });
     assert.equal(state.present, 3);
 
@@ -37,9 +38,9 @@ describe('undo_reducer', () => {
   });
 
   it('should return previous state if undo after save', () => {
-    let undo = undo_reducer(mock_reducer);
+    const undo = undoReducer(mockReducer);
 
-    var state = undo(state, { type: 'ADD' });
+    let state = undo(undefined, { type: 'ADD' });
     assert.equal(state.present, 2);
 
     // Save current state
