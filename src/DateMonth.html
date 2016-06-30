@@ -6,7 +6,7 @@
                value="{{monthYear}}"
                twoway="false"
                on-focus="set({ open: true })">
-        <span class="input-group-addon" on-click="toggle('open')">
+        <span class="input-group-addon toggle" on-click="toggle('open')">
           <i class="icon icon-calendar"></i>
         </span>
       </div>
@@ -18,7 +18,7 @@
           <div class="month col-xs-6">
             <ul>
               {{#each visibleMonths:m}}
-                <li {{#if month == m}}class="selected"{{/if}} on-click="MONTH:{{m}}">
+                <li data-month="{{this}}" {{#if month == m}}class="selected"{{/if}} on-click="MONTH:{{m}}">
                   {{this}}
                 </li>
               {{/each}}
@@ -27,16 +27,16 @@
 
           <div class="year col-xs-6">
             <header class="btn-group btn-group-xs btn-group-justified">
-              <a on-click="PREV" class="btn btn-default">
+              <a id="prev" on-click="PREV" class="btn btn-default">
                 <i class="icon icon-caret-left"></i>
               </a>
-              <a on-click="NEXT" {{#if !canAdvanceYear}}disabled{{/if}} class="btn btn-default">
+              <a id="next" on-click="NEXT" {{#if !canAdvanceYear}}disabled{{/if}} class="btn btn-default">
                 <i class="icon icon-caret-right"></i>
               </a>
             </header>
             <ul>
               {{#each visibleYears}}
-                <li {{#if year == this}}class="selected"{{/if}} on-click="YEAR:{{this}}">
+                <li data-year="{{this}}" {{#if year == this}}class="selected"{{/if}} on-click="YEAR:{{this}}">
                   {{this}}
                 </li>
               {{/each}}
@@ -44,8 +44,8 @@
           </div>
         </div>
         <footer class="text-center">
-          <a class="btn btn-sm btn-default" on-click="set({ open: false })">OK</a>
-          <a class="btn btn-sm btn-default" on-click="cancel">Cancel</a>
+          <a id="save" class="btn btn-sm btn-default" on-click="set({ open: false })">OK</a>
+          <a id="cancel" class="btn btn-sm btn-default" on-click="cancel">Cancel</a>
         </footer>
       </div>
     {{/if}}
