@@ -9,10 +9,10 @@
   "author": "Appfolio, Inc.",
   "license": "MIT",
   "scripts": {
-    "lint": "node node_modules/eslint/bin/eslint.js src; exit 0",
-    "dist": "node node_modules/webpack/bin/webpack.js -p",
+    "lint": "eslint src; exit 0",
+    "dist": "webpack -p",
     "start": "node dev_server.js",
-    "test": "node node_modules/nyc/bin/nyc.js --reporter text --reporter lcov node_modules/mocha/bin/mocha --recursive --timeout 10000 --compilers js:babel-register"
+    "test": "nyc --reporter text --reporter lcov mocha --recursive --timeout 10000 --compilers js:babel-register"
   },
   "devDependencies": {
     "assert": "^1.4.1",
