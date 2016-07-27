@@ -16,13 +16,16 @@
   box-shadow: 0 1px 0 white inset;
 }
 
+.date_month .btn-group-justified {
+  display: inherit;
+}
+
 .date_month .picker {
   background-color: white;
   border: 1px solid rgb(192,192,192);
   box-shadow: 0 4px 8px rgba(0,0,0,0.25);
   font-size: 80%;
   position: absolute;
-  width: 24em;
   z-index: 1000;
 }
 
@@ -31,9 +34,12 @@
 }
 
 .date_month .picker ul, .date_month .picker header {
-  column-count: 2;
   margin: 0;
   padding: 4px;
+}
+
+.date_month .picker ul {
+  column-count: 2;
 }
 
 .date_month .picker li {
