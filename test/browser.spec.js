@@ -106,4 +106,6 @@ describe('Render component', () => {
       .visible('.picker')
       .then(exists => assert(!exists, 'picker should be closed'));
   });
+
+  it('should retain manually edited value'); // TODO
 });

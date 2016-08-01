@@ -9,20 +9,20 @@
   </head>
   <body>
     <h2>Date/Month Picker example</h2>
-    <div id="main"></div>
+    <div id="main">
+      <input type="text" value="Nov 1971" />
+    </div>
   </body>
   <script src="DateMonth.js"></script>
-<!--
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="DateMonth.js"></script>
   <script>
     $(function() {
       // Get current date value from input:
-      var date = $("#datemonth input").val();
+      var date = $("#main input").val();
 
       // Pass the element to replace, name of the input, and date value:
-      DateMonth('#datemonth', 'datemonth', date);
+      DateMonth($('#main')[0], 'datemonth', date);
     });
   </script>
--->
 </html>
