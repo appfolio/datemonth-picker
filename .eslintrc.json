@@ -1,15 +1,3 @@
 {
-  "extends": "airbnb",
-  "plugins": [
-        "react"
-    ],
-  "rules": {
-    "comma-dangle": 0,
-    "import/no-unresolved": 1,
-    "no-console": 0,
-    "prefer-const": [1, {
-      "destructuring": "any",
-      "ignoreReadBeforeAssign": true
-    }]
-  }
+  "extends": "appfolio-base"
 }

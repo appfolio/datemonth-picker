@@ -42,14 +42,14 @@ describe('Render component', () => {
 
   it('should update value when selecting month', () => {
     return browser
-      .click('li[data-month="Jan"]')
+      .click('li[data-value="Jan"]')
       .evaluate(() => document.querySelector('input[name="datemonth"]').value)
       .then(value => assert.equal(value, 'Jan 1971'));
   });
 
   it('should update value when selecting year', () => {
     return browser
-      .click('li[data-year="1976"]')
+      .click('li[data-value="1976"]')
       .evaluate(() => document.querySelector('input[name="datemonth"]').value)
       .then(value => assert.equal(value, 'Jan 1976'));
   });
@@ -79,7 +79,7 @@ describe('Render component', () => {
   it('should update value when clicking OK', () => {
     return browser
       .click('.toggle')
-      .click('li[data-month="Mar"]')
+      .click('li[data-value="Mar"]')
       .click('#save')
       .evaluate(() => document.querySelector('input[name="datemonth"]').value)
       .then(value => assert.equal(value, 'Mar 1971'));
@@ -89,14 +89,23 @@ describe('Render component', () => {
     const now = new Date();
     return browser
       .click('.toggle')
-      .click('li[data-month="Jun"]')
+      .click('li[data-value="Jun"]')
       .click('#next')
       .click('#next')
       .click('#next')
       .click('#next')
       .click('#next')
       .click('#next')
-      .evaluate(() => document.querySelector('input[name="datemonth"]').value)
-      .then(value => assert.equal(value, `Jun ${now.getFullYear()}`));
+      .evaluate(() => document.querySelector('.year li:last-child').dataset.value)
+      .then(value => assert.equal(value, now.getFullYear()));
   });
+
+  it('should close when clicked outside', () => {
+    return browser
+      .click('h2')
+      .visible('.picker')
+      .then(exists => assert(!exists, 'picker should be closed'));
+  });
+
+  it('should retain manually edited value'); // TODO
 });

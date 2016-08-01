@@ -1,41 +1,20 @@
-import { createStore } from 'redux';
-import fecha from 'fecha';
-import undo from './undo_reducer.js';
-import reducer from './datemonth_reducer.js';
+import { h, render } from 'preact';
 import DateMonth from './DateMonth.js';
-import Ractive from 'ractive';
-
-Ractive.DEBUG = /unminified/.test(() => { /* unminified */ });
+import fecha from 'fecha';
 
 // CJS-style export wrapper to avoid `DateMonth.default`:
-module.exports = (element, name = '', date) => {
-  const store = createStore(undo(reducer));
-  const app = new Ractive({
-    el: element,
-    components: {
-      DateMonth
-    },
-    data: {
-      name,
-      store
-    },
-    template: '<DateMonth name="{{name}}" date={{store.getState().present}} />',
-    oninit() {
-      this.on({
-        'DateMonth.MONTH': (event, month) => store.dispatch({ type: 'MONTH', month }),
-        'DateMonth.YEAR': (event, year) => store.dispatch({ type: 'YEAR', year }),
-        'DateMonth.NEXT': () => store.dispatch({ type: 'NEXT' }),
-        'DateMonth.PREV': () => store.dispatch({ type: 'PREV' }),
-        'DateMonth.CANCEL': () => store.dispatch({ type: 'UNDO' }),
-        'DateMonth.SAVE': () => store.dispatch({ type: 'SAVE' })
-      });
-    }
-  });
-  store.subscribe(() => app.update());
-
-  // Initialize store if date passed
+module.exports = (element, name = '', date = new Date()) => {
+  let initialDate = date;
   if (date && typeof date === 'string') {
-    const initialDate = fecha.parse(date, 'MMM YYYY');
-    store.dispatch({ type: 'DATE', date: initialDate });
+    initialDate = fecha.parse(date, 'MMM YYYY');
   }
+  const month = fecha.format(initialDate, 'MMM');
+  const year = initialDate.getFullYear();
+
+  render(<DateMonth name={name} month={month} year={year} />, element.parentElement, element);
 };
+
+if (module.hot) {
+  module.hot.accept();
+}
+

@@ -1,18 +1,23 @@
+const autoprefixer = require('autoprefixer');
+const path = require('path');
 const webpack = require('webpack');
 
+/**
+ * Production webpack settings.
+ */
 module.exports = {
   entry: [
-    './src/index'
+    path.resolve(__dirname, './src/index')
   ],
   output: {
-    path: `${__dirname}/dist/`,
+    path: path.resolve(__dirname, './dist'),
     filename: 'DateMonth.js',
     library: 'DateMonth',
     libraryTarget: 'umd'
   },
   module: {
     loaders: [
-      { test: /\.css/, loader: 'style-loader!css-loader!autoprefixer-loader' },
+      { test: /\.css$/, loader: 'style!css!postcss' },
       { test: /\.html/, loader: 'ractive-loader' },
       {
         test: /\.js$/,
