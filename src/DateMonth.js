@@ -1,9 +1,10 @@
-import range from 'lodash.range';
-import { h, Component } from 'preact';
+import bs from './bootstrap.cssmodule';
+import fecha from 'fecha';
 import includes from 'lodash.includes';
 import path from './path.js';
+import range from 'lodash.range';
+import { h, Component } from 'preact';
 
-import bs from './bootstrap.cssmodule';
 import './DateMonth.css';
 
 const Label = ({ selected, label, onClick }) => (
@@ -76,6 +77,13 @@ export default class DateMonth extends Component {
         this.setState({ year });
       }
     };
+    const change = event => {
+      const text = event.target.value.trim();
+      const date = fecha.parse(text, 'MMM YYYY');
+      if (date) {
+        this.setState({ month: MONTHS[date.getMonth()], year: date.getFullYear() });
+      }
+    };
 
     return (
       <div className="date_month">
@@ -85,7 +93,8 @@ export default class DateMonth extends Component {
                    value={`${state.month} ${state.year}`}
                    type="text"
                    className={bs['form-control']}
-                   onfocus={open} />
+                   onfocus={open}
+                   onblur={change} />
             <span className={`${bs['input-group-addon']} toggle`} onClick={toggle}>
               <i className="icon icon-calendar" />
             </span>
