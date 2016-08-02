@@ -3,7 +3,7 @@ import { h, Component } from 'preact';
 import includes from 'lodash.includes';
 import path from './path.js';
 
-import './bootstrap.css';
+import bs from './bootstrap.cssmodule';
 import './DateMonth.css';
 
 const Label = ({ selected, label, onClick }) => (
@@ -80,32 +80,32 @@ export default class DateMonth extends Component {
     return (
       <div className="date_month">
         <header>
-          <div className="input-group">
+          <div className={bs['input-group']}>
             <input name={props.name}
                    value={`${state.month} ${state.year}`}
                    type="text"
-                   className="form-control"
+                   className={bs['form-control']}
                    onfocus={open} />
-            <span className="input-group-addon toggle" onClick={toggle}>
+            <span className={`${bs['input-group-addon']} toggle`} onClick={toggle}>
               <i className="icon icon-calendar" />
             </span>
           </div>
         </header>
         {state.open ?
           <div className="picker">
-            <div className="row">
-              <div className="month col-xs-6">
+            <div className={bs.row}>
+              <div className={`month ${bs['col-xs-6']}`}>
                 <ul>
                   {MONTHS.map(month => <Label selected={state.month == month} label={month} onClick={() => this.setMonth(month)} />)}
                 </ul>
               </div>
 
-              <div className="year col-xs-6">
-                <header className="btn-group btn-group-xs btn-group-justified">
-                  <a id="prev" onclick={prev} className="btn btn-default">
+              <div className={`year ${bs['col-xs-6']}`}>
+                <header className={`${bs['btn-group']} ${bs['btn-group-xs']} ${bs['btn-group-justified']}`}>
+                  <a id="prev" onclick={prev} className={`${bs.btn} ${bs['btn-default']}`}>
                     <i className="icon icon-caret-left"></i>
                   </a>
-                  <a id="next" onclick={next} disabled={!can_advance_year} className="btn btn-default">
+                  <a id="next" onclick={next} disabled={!can_advance_year} className={`${bs.btn} ${bs['btn-default']}`}>
                     <i className="icon icon-caret-right"></i>
                   </a>
                 </header>
@@ -114,9 +114,9 @@ export default class DateMonth extends Component {
                 </ul>
               </div>
             </div>
-            <footer className="text-center">
-              <a id="save" className="btn btn-sm btn-default" onclick={close}>OK</a>
-              <a id="cancel" className="btn btn-sm btn-default" onclick={cancel}>Cancel</a>
+            <footer className={bs['text-center']}>
+              <a id="save" className={`${bs.btn} ${bs['btn-sm']} ${bs['btn-default']}`} onclick={close}>OK</a>
+              <a id="cancel" className={`${bs.btn} ${bs['btn-sm']} ${bs['btn-default']}`} onclick={cancel}>Cancel</a>
             </footer>
           </div> : null}
       </div>);

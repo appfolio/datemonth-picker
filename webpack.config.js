@@ -17,6 +17,7 @@ module.exports = {
   },
   module: {
     loaders: [
+      { test: /\.cssmodule$/, loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss' },
       { test: /\.css$/, loader: 'style!css!postcss' },
       { test: /\.html/, loader: 'ractive-loader' },
       {
@@ -27,6 +28,9 @@ module.exports = {
       }
     ]
   },
+  postcss: [
+    autoprefixer({ browsers: ['last 2 versions'] })
+  ],
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
