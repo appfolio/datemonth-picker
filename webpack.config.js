@@ -17,7 +17,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.cssmodule$/, loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss' },
+      { test: /\.cssmodule$/, loader: 'style!css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss' },
       { test: /\.css$/, loader: 'style!css!postcss' },
       { test: /\.html/, loader: 'ractive-loader' },
       {

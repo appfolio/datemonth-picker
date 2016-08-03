@@ -88,14 +88,14 @@ export default class DateMonth extends Component {
     return (
       <div className="date_month">
         <header>
-          <div className={bs['input-group']}>
+          <div className={bs.inputGroup}>
             <input name={props.name}
                    value={`${state.month} ${state.year}`}
                    type="text"
-                   className={bs['form-control']}
+                   className={bs.formControl}
                    onfocus={open}
                    onblur={change} />
-            <span className={`${bs['input-group-addon']} toggle`} onClick={toggle}>
+            <span className={`${bs.inputGroupAddon} toggle`} onClick={toggle}>
               <i className="icon icon-calendar" />
             </span>
           </div>
@@ -103,18 +103,18 @@ export default class DateMonth extends Component {
         {state.open ?
           <div className="picker">
             <div className={bs.row}>
-              <div className={`month ${bs['col-xs-6']}`}>
+              <div className={`month ${bs.colXs6}`}>
                 <ul>
                   {MONTHS.map(month => <Label selected={state.month == month} label={month} onClick={() => this.setMonth(month)} />)}
                 </ul>
               </div>
 
-              <div className={`year ${bs['col-xs-6']}`}>
-                <header className={`${bs['btn-group']} ${bs['btn-group-xs']} ${bs['btn-group-justified']}`}>
-                  <a id="prev" onclick={prev} className={`${bs.btn} ${bs['btn-default']}`}>
+              <div className={`year ${bs.colXs6}`}>
+                <header className={`${bs.btnGroup} ${bs.btnGroupXs} ${bs.btnGroupJustified}`}>
+                  <a id="prev" onclick={prev} className={`${bs.btn} ${bs.btnDefault}`}>
                     <i className="icon icon-caret-left"></i>
                   </a>
-                  <a id="next" onclick={next} disabled={!can_advance_year} className={`${bs.btn} ${bs['btn-default']}`}>
+                  <a id="next" onclick={next} disabled={!can_advance_year} className={`${bs.btn} ${bs.btnDefault}`}>
                     <i className="icon icon-caret-right"></i>
                   </a>
                 </header>
@@ -123,9 +123,9 @@ export default class DateMonth extends Component {
                 </ul>
               </div>
             </div>
-            <footer className={bs['text-center']}>
-              <a id="save" className={`${bs.btn} ${bs['btn-sm']} ${bs['btn-default']}`} onclick={close}>OK</a>
-              <a id="cancel" className={`${bs.btn} ${bs['btn-sm']} ${bs['btn-default']}`} onclick={cancel}>Cancel</a>
+            <footer className={bs.textCenter}>
+              <a id="save" className={`${bs.btn} ${bs.btnSm} ${bs.btnDefault}`} onclick={close}>OK</a>
+              <a id="cancel" className={`${bs.btn} ${bs.btnSm} ${bs.btnDefault}`} onclick={cancel}>Cancel</a>
             </footer>
           </div> : null}
       </div>);
