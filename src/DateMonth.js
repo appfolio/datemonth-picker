@@ -44,6 +44,10 @@ export default class DateMonth extends Component {
     document.addEventListener('click', this.listener);
   }
 
+  componentDidUpdate() {
+    this._input.focus();
+  }
+
   componentWillUnmount() {
     document.removeEventListener('click', this.listener);
   }
@@ -84,16 +88,21 @@ export default class DateMonth extends Component {
         this.setState({ month: MONTHS[date.getMonth()], year: date.getFullYear() });
       }
     };
+    const key = event => {
+      if (event.keyCode === 27) this.setState({ open: false });
+    };
 
     return (
       <div className="date_month">
         <header>
           <div className={bs.inputGroup}>
             <input name={props.name}
+                   ref={component => this._input = component}
                    value={`${state.month} ${state.year}`}
                    type="text"
                    className={bs.formControl}
-                   onfocus={open}
+                   onclick={open}
+                   onkeydown={key}
                    onblur={change} />
             <span className={`${bs.inputGroupAddon} toggle`} onClick={toggle}>
               <i className="icon icon-calendar" />

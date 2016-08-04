@@ -26,16 +26,10 @@ describe('Render component', () => {
       .then(exists => assert(exists, 'picker did not open'));
   });
 
-  it('should close when clicked', () => {
+  it('should open when input clicked', () => {
     return browser
-      .click('.toggle')
-      .visible('.picker')
-      .then(exists => assert(!exists, 'picker did not close'));
-  });
-
-  it('should open when focused', () => {
-    return browser
-      .insert('input[name="datemonth"]')
+      .click('.toggle') // Ensures is closed
+      .click('input')
       .visible('.picker')
       .then(exists => assert(exists, 'picker did not open'));
   });
@@ -100,12 +94,26 @@ describe('Render component', () => {
       .then(value => assert.equal(value, now.getFullYear()));
   });
 
+  it('should close when clicked', () => {
+    return browser
+      .click('.toggle')
+      .visible('.picker')
+      .then(exists => assert(!exists, 'picker did not close'));
+  });
+
   it('should close when clicked outside', () => {
     return browser
+      .click('input[name="datemonth"]') // Ensures is open
       .click('h2')
       .visible('.picker')
       .then(exists => assert(!exists, 'picker should be closed'));
   });
 
-  it('should retain manually edited value'); // TODO
+  it('should close when Escape is pressed', () => {
+    return browser
+      .click('input[name="datemonth"]') // Ensures is open
+      .type('input[name="datemonth"]', '\u001B')
+      .visible('.picker')
+      .then(exists => assert(!exists, 'picker should be closed'));
+  });
 });
