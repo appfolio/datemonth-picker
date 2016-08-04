@@ -40,6 +40,7 @@
   list-style: none;
   padding: 4px;
   text-align: center;
+  transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
 }
 
 .date_month .selected {
