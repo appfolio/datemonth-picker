@@ -130,6 +130,7 @@ export default class DateMonth extends Component {
           <div className={bs.inputGroup}>
             <input name={props.name}
                    ref={component => this._input = component}
+                   required={props.required}
                    value={value}
                    type="text"
                    className={bs.formControl}
