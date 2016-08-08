@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.date_month input:invalid {
+  border-color: #c61a0c;
+}
+
 .date_month footer {
   border-top: 1px solid lightgrey;
   padding: 8px;

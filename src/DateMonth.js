@@ -14,14 +14,32 @@ const Label = ({ selected, label, onClick }) => (
 );
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const MMM_YYYY_PATTERN = '^\\s*([Jj][Aa][Nn]|[Ff][Ee][Bb]|[Mm][Aa][Rr]|[Aa][Pp][Rr]|[Mm][Aa][Yy]|[Jj][Uu][Nn]|[Jj][Uu][Ll]|[Aa][Uu][Gg]|[Ss][Ee][Pp]|[Oo][Cc][Tt]|[Nn][Oo][Vv]|[Dd][Ee][Cc])\\s+\\d\\d\\d\\d\\s*$';
 
 export default class DateMonth extends Component {
   constructor(props) {
     super(props);
+
+    const date = props.value;
+    let month = undefined;
+    let year = (new Date()).getFullYear();
+
+    if (!date) {
+      const initialDate = new Date();
+      month = fecha.format(initialDate, 'MMM');
+      year = initialDate.getFullYear();
+    } else {
+      const initialDate = fecha.parse(date, 'MMM YYYY');
+      if (initialDate) {
+        month = fecha.format(initialDate, 'MMM');
+        year = initialDate.getFullYear();
+      }
+    }
+
     this.state = {
       open: false,
-      month: props.month,
-      year: props.year || (new Date()).getFullYear()
+      month,
+      year
     };
   }
 
@@ -41,15 +59,19 @@ export default class DateMonth extends Component {
       }
       return true;
     };
-    document.addEventListener('click', this.listener);
-  }
-
-  componentDidUpdate() {
-    this._input.focus();
+    this.escListener = event => {
+      if (event.keyCode === 27) { // ESC
+        this.setState({ open: false });
+      }
+      return true;
+    };
+    document.addEventListener('click', this.listener, { passive: true });
+    document.addEventListener('keydown', this.escListener, { passive: true });
   }
 
   componentWillUnmount() {
     document.removeEventListener('click', this.listener);
+    document.removeEventListener('keydown', this.escListener);
   }
 
   render(props, state) {
@@ -82,15 +104,25 @@ export default class DateMonth extends Component {
       }
     };
     const change = event => {
-      const text = event.target.value.trim();
-      const date = fecha.parse(text, 'MMM YYYY');
-      if (date) {
-        this.setState({ month: MONTHS[date.getMonth()], year: date.getFullYear() });
+      if (this._input.checkValidity()) {
+        const text = event.target.value.trim();
+        const date = fecha.parse(text, 'MMM YYYY');
+        if (date) {
+          this.setState({
+            month: MONTHS[date.getMonth()],
+            year: date.getFullYear()
+          });
+        }
       }
     };
-    const key = event => {
-      if (event.keyCode === 27) this.setState({ open: false });
+    const tabListener = event => {
+      if (event.keyCode === 9) { // TAB
+        this.setState({ open: false });
+      }
+      return true;
     };
+
+    const value = state.month && state.year ? `${state.month} ${state.year}` : props.value;
 
     return (
       <div className="date_month">
@@ -98,12 +130,15 @@ export default class DateMonth extends Component {
           <div className={bs.inputGroup}>
             <input name={props.name}
                    ref={component => this._input = component}
-                   value={`${state.month} ${state.year}`}
+                   required={props.required}
+                   value={value}
                    type="text"
                    className={bs.formControl}
                    onclick={open}
-                   onkeydown={key}
-                   onblur={change} />
+                   onfocus={open}
+                   oninput={change}
+                   onkeydown={tabListener}
+                   pattern={MMM_YYYY_PATTERN} />
             <span className={`${bs.inputGroupAddon} toggle`} onClick={toggle}>
               <i className="icon icon-calendar" />
             </span>
