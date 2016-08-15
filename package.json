@@ -1,6 +1,6 @@
 {
   "name": "datemonth-picker",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Date/Month picker",
   "main": "dist/DateMonth.js",
   "files": [
@@ -26,7 +26,7 @@
     "babel-preset-stage-2": "^6.11.0",
     "css-loader": "~0.23.1",
     "eslint": "^2.13.1",
-    "eslint-config-appfolio-base": "^0.2.0",
+    "eslint-config-appfolio-react": "^0.2.0",
     "express": "^4.14.0",
     "fecha": "^2.2.0",
     "ignore-styles": "^4.0.0",
