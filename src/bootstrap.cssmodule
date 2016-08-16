@@ -4,22 +4,8 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-footer,
-header {
-  display: block
-}
-
-*, *:before, *:after {
-  box-sizing: border-box
-}
-
 .text-center {
   text-align: center
-}
-
-ul {
-  margin-top: 0;
-  margin-bottom: 10px
 }
 
 .row {
