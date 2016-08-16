@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.date_month *, .date_month *:before, .date_month *:after {
+  box-sizing: border-box
+}
+
 .date_month input:invalid {
   border-color: #c61a0c;
 }
@@ -13,10 +17,6 @@
 .datemonth footer,
 .datemonth header {
   display: block
-}
-
-*, *:before, *:after {
-  box-sizing: border-box
 }
 
 .datemonth ul {
