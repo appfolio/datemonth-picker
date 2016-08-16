@@ -10,6 +10,20 @@
   border-color: #c61a0c;
 }
 
+.datemonth footer,
+.datemonth header {
+  display: block
+}
+
+*, *:before, *:after {
+  box-sizing: border-box
+}
+
+.datemonth ul {
+  margin-top: 0;
+  margin-bottom: 10px
+}
+
 .date_month footer {
   border-top: 1px solid lightgrey;
   padding: 8px;
