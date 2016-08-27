@@ -21,7 +21,7 @@ module.exports = {
       { test: /\.css$/, loader: 'style!css!postcss' },
       { test: /\.html/, loader: 'ractive-loader' },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loaders: ['babel'],
         exclude: /node_modules/,
         include: __dirname

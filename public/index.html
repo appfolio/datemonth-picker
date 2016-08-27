@@ -21,7 +21,7 @@
       var date = $("#main input").val();
 
       // Pass the element to replace, name of the input, date value, and if it's a required field:
-      DateMonth($('#main')[0], 'datemonth', date, true);
+      DateMonth(document.getElementById('main'), 'datemonth', date, true);
     });
   </script>
 </html>
