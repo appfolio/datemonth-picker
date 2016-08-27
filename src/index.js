@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DateMonth from './components/DateMonth.js';
+import DateMonth from './components/DateMonth.jsx';
 import { useStrict } from 'mobx';
 
 useStrict(true);
