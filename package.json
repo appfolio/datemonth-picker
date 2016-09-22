@@ -1,6 +1,6 @@
 {
   "name": "datemonth-picker",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Date/Month picker",
   "main": "dist/DateMonth.js",
   "files": [
