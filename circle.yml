@@ -1,0 +1,6 @@
+general:
+  artifacts:
+    - ./coverage
+machine:
+  node:
+    version: 6.1.0
