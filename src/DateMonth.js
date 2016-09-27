@@ -128,17 +128,19 @@ export default class DateMonth extends Component {
       <div className="date_month">
         <header>
           <div className={bs.inputGroup}>
-            <input name={props.name}
-                   ref={component => this._input = component}
-                   required={props.required}
-                   value={value}
-                   type="text"
-                   className={bs.formControl}
-                   onclick={open}
-                   onfocus={open}
-                   oninput={change}
-                   onkeydown={tabListener}
-                   pattern={MMM_YYYY_PATTERN} />
+            <input
+              className={bs.formControl}
+              name={props.name}
+              onClick={open}
+              onFocus={open}
+              onInput={change}
+              onKeyDown={tabListener}
+              pattern={MMM_YYYY_PATTERN}
+              ref={component => this._input = component}
+              required={props.required}
+              type="text"
+              value={value}
+            />
             <span className={`${bs.inputGroupAddon} toggle`} onClick={toggle}>
               <i className="icon icon-calendar" />
             </span>
@@ -155,10 +157,10 @@ export default class DateMonth extends Component {
 
               <div className={`year ${bs.colXs6}`}>
                 <header className={`${bs.btnGroup} ${bs.btnGroupXs} ${bs.btnGroupJustified}`}>
-                  <a id="prev" onclick={prev} className={`${bs.btn} ${bs.btnDefault}`}>
+                  <a id="prev" onClick={prev} className={`${bs.btn} ${bs.btnDefault}`}>
                     <i className="icon icon-caret-left"></i>
                   </a>
-                  <a id="next" onclick={next} disabled={!can_advance_year} className={`${bs.btn} ${bs.btnDefault}`}>
+                  <a id="next" onClick={next} disabled={!can_advance_year} className={`${bs.btn} ${bs.btnDefault}`}>
                     <i className="icon icon-caret-right"></i>
                   </a>
                 </header>
@@ -168,8 +170,8 @@ export default class DateMonth extends Component {
               </div>
             </div>
             <footer className={bs.textCenter}>
-              <a id="save" className={`${bs.btn} ${bs.btnSm} ${bs.btnDefault}`} onclick={close}>OK</a>
-              <a id="cancel" className={`${bs.btn} ${bs.btnSm} ${bs.btnDefault}`} onclick={cancel}>Cancel</a>
+              <a id="save" className={`${bs.btn} ${bs.btnSm} ${bs.btnDefault}`} onClick={close}>OK</a>
+              <a id="cancel" className={`${bs.btn} ${bs.btnSm} ${bs.btnDefault}`} onClick={cancel}>Cancel</a>
             </footer>
           </div> : null}
       </div>);
