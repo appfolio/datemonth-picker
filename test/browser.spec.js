@@ -79,7 +79,7 @@ describe('Render component', () => {
       .then(value => assert.equal(value, 'Mar 1971'));
   });
 
-  it('should stop at current year when clicking into future', () => {
+  it('should not stop at current year when clicking into future', () => {
     const now = new Date();
     return browser
       .click('.toggle')
@@ -90,8 +90,9 @@ describe('Render component', () => {
       .click('#next')
       .click('#next')
       .click('#next')
+      .click('#next')
       .evaluate(() => document.querySelector('.year li:last-child').dataset.value)
-      .then(value => assert.equal(value, now.getFullYear()));
+      .then(value => assert.equal(value, now.getFullYear() + 20));
   });
 
   it('should close when clicked', () => {
