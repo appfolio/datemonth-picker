@@ -79,7 +79,6 @@ export default class DateMonth extends Component {
     const end = state.year + (now.getFullYear() - state.year) % 10 + 1;
     const start = end - 10;
     const YEARS = range(start, end);
-    const can_advance_year = now.getFullYear() - state.year > 9;
 
     const open = () => this.setState({
       open: true,
@@ -97,11 +96,9 @@ export default class DateMonth extends Component {
     });
     const prev = () => this.setState({ year: state.year - 10 });
     const next = () => {
-      if (can_advance_year) {
-        const current_year = (new Date()).getFullYear();
-        const year = Math.min(state.year + 10, current_year);
-        this.setState({ year });
-      }
+      const current_year = (new Date()).getFullYear();
+      const year = state.year + 10;
+      this.setState({ year });
     };
     const change = event => {
       if (this._input.checkValidity()) {
@@ -160,7 +157,7 @@ export default class DateMonth extends Component {
                   <a id="prev" onClick={prev} className={`${bs.btn} ${bs.btnDefault}`}>
                     <i className="icon icon-caret-left"></i>
                   </a>
-                  <a id="next" onClick={next} disabled={!can_advance_year} className={`${bs.btn} ${bs.btnDefault}`}>
+                  <a id="next" onClick={next} className={`${bs.btn} ${bs.btnDefault}`}>
                     <i className="icon icon-caret-right"></i>
                   </a>
                 </header>
