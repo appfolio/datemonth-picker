@@ -1,10 +1,8 @@
 import { h, render } from 'preact';
 import DateMonth from './DateMonth.js';
+import register from 'preact-custom-element';
 
-// CJS-style export wrapper to avoid `DateMonth.default`:
-module.exports = (element, name = '', date, required = false) => {
-  render(<DateMonth name={name} value={date} required={required} />, element.parentElement, element);
-};
+register(DateMonth, 'af-datemonth');
 
 if (module.hot) {
   module.hot.accept();
