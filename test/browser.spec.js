@@ -92,7 +92,7 @@ describe('Render component', () => {
       .click('#next')
       .click('#next')
       .evaluate(() => document.querySelector('.year li:last-child').dataset.value)
-      .then(value => assert.equal(value, now.getFullYear() + 20));
+      .then(value => assert.equal(value, now.getFullYear() + 30));
   });
 
   it('should close when clicked', () => {

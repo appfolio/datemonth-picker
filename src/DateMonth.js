@@ -1,6 +1,7 @@
 import bs from './bootstrap.cssmodule';
 import fecha from 'fecha';
 import includes from 'lodash.includes';
+import mod from './mod.js';
 import path from './path.js';
 import range from 'lodash.range';
 import { h, Component } from 'preact';
@@ -76,7 +77,7 @@ export default class DateMonth extends Component {
 
   render(props, state) {
     const now = new Date();
-    const end = state.year + (now.getFullYear() - state.year) % 10 + 1;
+    const end = state.year + mod((now.getFullYear() - state.year), 10) + 1;
     const start = end - 10;
     const YEARS = range(start, end);
 
@@ -95,11 +96,7 @@ export default class DateMonth extends Component {
       undo: { month: state.month, year: state.year }
     });
     const prev = () => this.setState({ year: state.year - 10 });
-    const next = () => {
-      const current_year = (new Date()).getFullYear();
-      const year = state.year + 10;
-      this.setState({ year });
-    };
+    const next = () => this.setState({ year: state.year + 10 });
     const change = event => {
       if (this._input.checkValidity()) {
         const text = event.target.value.trim();
