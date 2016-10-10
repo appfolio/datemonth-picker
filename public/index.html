@@ -10,9 +10,19 @@
   <body>
     <h2>Date/Month Picker example</h2>
     <div id="main">
-      <af-datemonth name="datemonth" value="Nov 1971" />
+      <input type="text" value="Nov 1971" />
     </div>
   </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents-lite.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="DateMonth.js"></script>
+  <script>
+    $(function() {
+      // Get current date value from input:
+      var date = $("#main input").val();
+
+      // Pass the element to replace, name of the input, date value, and if it's a required field:
+      DateMonth($('#main')[0], 'datemonth', date, true);
+    });
+  </script>
+</html>
 </html>
