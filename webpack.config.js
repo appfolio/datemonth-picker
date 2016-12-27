@@ -17,15 +17,14 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.cssmodule$/, loader: 'style!css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss' },
-      { test: /\.css$/, loader: 'style!css!postcss' },
-      { test: /\.html/, loader: 'ractive-loader' },
+      { test: /\.cssmodule$/, loader: 'style-loader!css-loader?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader' },
+      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' },
       {
-        test: /\.js$/,
-        loaders: ['babel'],
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
         exclude: /node_modules/,
         include: __dirname
-      }
+      },
     ]
   },
   plugins: [
