@@ -117,4 +117,7 @@ describe('Render component', () => {
       .visible('.picker')
       .then(exists => assert(!exists, 'picker should be closed'));
   });
+
+  it('should update the state based on typed in date');
+
 });
