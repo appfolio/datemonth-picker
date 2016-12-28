@@ -1,5 +1,5 @@
 import bs from './bootstrap.cssmodule';
-import dateParse from './date_parse.js';
+import dateParse, { DATE_PATTERN } from './date_parse.js';
 import fecha from 'fecha';
 import includes from 'lodash.includes';
 import mod from './mod.js';
@@ -16,9 +16,6 @@ const Label = ({ selected, label, onClick }) => (
 );
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const MMYY_PATTERN = '\\d\\d?/\\d\\d';
-const MMM_YYYY_PATTERN = '([Jj][Aa][Nn]|[Ff][Ee][Bb]|[Mm][Aa][Rr]|[Aa][Pp][Rr]|[Mm][Aa][Yy]|[Jj][Uu][Nn]|[Jj][Uu][Ll]|[Aa][Uu][Gg]|[Ss][Ee][Pp]|[Oo][Cc][Tt]|[Nn][Oo][Vv]|[Dd][Ee][Cc])\\s+\\d\\d\\d\\d';
-const DATE_PATTERN = `^\\s*(${MMYY_PATTERN})|(${MMM_YYYY_PATTERN})\\s*$`;
 
 export default class DateMonth extends Component {
   constructor(props) {
@@ -103,7 +100,7 @@ export default class DateMonth extends Component {
     const change = event => {
       if (this._input.checkValidity()) {
         const text = event.target.value.trim();
-        const date = dateParse(text, MMYY_PATTERN);
+        const date = dateParse(text);
         if (date) {
           this.setState({
             month: MONTHS[date.getMonth()],
