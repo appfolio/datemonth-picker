@@ -6,6 +6,7 @@
 .Spotlight-V100
 .Trashes
 coverage
+dist/stats.html
 docs
 Icon?
 node_modules
