@@ -39,7 +39,6 @@
     "nyc": "^6.6.1",
     "postcss": "^5.1.0",
     "postcss-loader": "~0.13.0",
-    "preact": "^6.0.2",
     "style-loader": "~0.13.0",
     "webpack": "2.1.0-beta.28",
     "webpack-dev-middleware": "^1.8.1",
@@ -47,6 +46,7 @@
     "webpack-visualizer-plugin": "^0.1.5"
   },
   "dependencies": {
-    "babel-polyfill": "^6.9.1"
+    "babel-polyfill": "^6.9.1",
+    "preact": "^6.0.2"
   }
 }
