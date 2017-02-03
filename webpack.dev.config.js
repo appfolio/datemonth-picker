@@ -12,7 +12,7 @@ config.entry.unshift('webpack-hot-middleware/client');
 config.plugins = [
   new Visualizer(),
   new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoErrorsPlugin(),
+  new webpack.NoEmitOnErrorsPlugin(),
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify('development')
