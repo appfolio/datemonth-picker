@@ -12,7 +12,9 @@
     "lint": "eslint src; exit 0",
     "dist": "webpack -p",
     "start": "node dev_server.js",
-    "test": "nyc --reporter text --reporter lcov mocha --recursive --timeout 10000 --compilers js:babel-register"
+    "test": "nyc --reporter text --reporter lcov mocha --recursive --timeout 10000 --compilers js:babel-register",
+    "prepublish": "npm run dist",
+    "postpublish": "git push --no-verify && git push --tags"
   },
   "devDependencies": {
     "assert": "^1.4.1",
@@ -39,7 +41,7 @@
     "nyc": "^6.6.1",
     "postcss": "^5.1.0",
     "postcss-loader": "~0.13.0",
-    "preact": "7.1.x",
+    "preact": "7.1.0",
     "style-loader": "~0.13.0",
     "webpack": "2.2.1",
     "webpack-dev-middleware": "^1.8.1",
