@@ -1,4 +1,3 @@
-import bs from './bootstrap.cssmodule';
 import dateParse, { DATE_PATTERN } from './date_parse.js';
 import fecha from 'fecha';
 import includes from 'lodash.includes';
@@ -121,9 +120,9 @@ export default class DateMonth extends Component {
     return (
       <div className="date_month">
         <header>
-          <div className={bs.inputGroup}>
+          <div className="input-group">
             <input
-              className={bs.formControl}
+              className="form-control"
               name={props.name}
               onClick={open}
               onFocus={open}
@@ -135,37 +134,41 @@ export default class DateMonth extends Component {
               type="text"
               value={value}
             />
-            <span className={`${bs.inputGroupAddon} toggle`} onClick={toggle}>
-              <i className="icon icon-calendar" />
+            <span class="input-group-append">
+              <button class="btn btn-secondary active px-2 toggle" tabIndex="-1" onClick={toggle} type="button">
+                <i aria-hidden="true" class="fa fa-calendar-o fa-fw icon-calendar-o icon-fw icon"></i>
+              </button>
             </span>
           </div>
         </header>
         {state.open ?
           <div className="picker">
-            <div className={bs.row}>
-              <div className={`month ${bs.colXs6}`}>
+            <div className="row">
+              <div className="month col">
                 <ul>
-                  {MONTHS.map(month => <Label selected={state.month == month} label={month} onClick={() => this.setMonth(month)} />)}
+                  {MONTHS.map(month => <Label selected={state.month === month} label={month} onClick={() => this.setMonth(month)} />)}
                 </ul>
               </div>
 
-              <div className={`year ${bs.colXs6}`}>
-                <header className={`${bs.btnGroup} ${bs.btnGroupXs} ${bs.btnGroupJustified}`}>
-                  <a id="prev" onClick={prev} className={`${bs.btn} ${bs.btnDefault}`}>
-                    <i className="icon icon-caret-left"></i>
-                  </a>
-                  <a id="next" onClick={next} className={`${bs.btn} ${bs.btnDefault}`}>
-                    <i className="icon icon-caret-right"></i>
-                  </a>
+              <div className="year col text-center">
+                <header className="btn-group btn-group-sm btn-group-justified">
+                  <button id="prev" onClick={prev} className="btn btn-link">
+                    <i aria-hidden="true" class="fa fa-angle-left fa-fw icon-angle-left icon-fw icon"></i>
+                  </button>
+                  <button id="next" onClick={next} className="btn btn-link">
+                    <i aria-hidden="true" class="fa fa-angle-right fa-fw icon-angle-right icon-fw icon"></i>
+                  </button>
                 </header>
                 <ul>
-                  {YEARS.map(year => <Label selected={state.year == year} label={year} onClick={() => this.setYear(year)} />)}
+                  {YEARS.map(year => <Label selected={state.year === year} label={year} onClick={() => this.setYear(year)} />)}
                 </ul>
               </div>
             </div>
-            <footer className={bs.textCenter}>
-              <a id="save" className={`${bs.btn} ${bs.btnSm} ${bs.btnDefault}`} onClick={close}>OK</a>
-              <a id="cancel" className={`${bs.btn} ${bs.btnSm} ${bs.btnDefault}`} onClick={cancel}>Cancel</a>
+            <footer className="text-center">
+              <div className="btn-group">
+                <button id="save" className="btn btn-sm btn-secondary" onClick={close}>OK</button>
+                <button id="cancel" className="btn btn-sm btn-secondary" onClick={cancel}>Cancel</button>
+              </div>
             </footer>
           </div> : null}
       </div>);
