@@ -1,5 +1,7 @@
 # Date/Month picker
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/appfolio/datemonth-picker.svg)](https://greenkeeper.io/)
+
 
 ## Usage:
 ```html
