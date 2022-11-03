@@ -38,7 +38,7 @@
     "lodash.range": "~3.2.0",
     "mocha": "^5.2.0",
     "nightmare": "^2.5.2",
-    "nyc": "^6.6.1",
+    "nyc": "^15.1.0",
     "postcss": "^5.1.0",
     "postcss-loader": "~0.13.0",
     "preact": "7.1.0",
